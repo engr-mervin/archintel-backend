@@ -4,22 +4,28 @@ import { ArticleStatus, type ArticleModel, type IArticle, type IArticleMethods }
 const articleSchema = new mongoose.Schema<IArticle, ArticleModel, IArticleMethods>({
   image: {
     type: String,
+    required:true,
   },
   title: {
     type: String,
+    required: true,
   },
   link: {
     type: String,
+    required: true,
   },
   date: {
     type: Date,
+    required: true
   },
   content: {
     type: String,
+    required: true,
   },
   status: {
     type: String,
     enum: Object.values(ArticleStatus),
+    default: ArticleStatus.ForEdit
   },
   writer: {
     type: mongoose.Schema.ObjectId,
@@ -36,7 +42,6 @@ const articleSchema = new mongoose.Schema<IArticle, ArticleModel, IArticleMethod
   createdAt: {
     type: Date,
     default: Date.now(),
-    select: false,
   },
 });
 

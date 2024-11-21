@@ -13,11 +13,11 @@ const companySchema = new mongoose.Schema<ICompany, CompanyModel, ICompanyMethod
   },
   logo: {
     type: String,
+    required: true,
   },
   createdAt: {
     type: Date,
     default: Date.now(),
-    select: false,
   },
 });
 

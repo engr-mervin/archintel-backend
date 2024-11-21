@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema<IUser, UserModel, IUserMethods>({
   createdAt: {
     type: Date,
     default: Date.now(),
-    select: false,
   },
 });
 

@@ -8,7 +8,7 @@ process.on("uncaughtException", (err) => {
 });
 
 const server = app.listen(ENV.PORT, () => {
-  console.log(`Ardatatech server running on PORT ${ENV.PORT}`);
+  console.log(`Archintel server running on PORT ${ENV.PORT}`);
 });
 
 process.on("unhandledRejection", (err: Error) => {
