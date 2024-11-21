@@ -1,5 +1,5 @@
 import express from "express";
-import accountRouter from "@/routes/accountRoutes";
+import accountRouter from "@/routes/articleRoutes";
 import { errorHandler } from "./controllers/errorController";
 const app = express();
 
