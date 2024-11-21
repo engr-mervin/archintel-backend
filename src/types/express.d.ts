@@ -1,7 +1,7 @@
-import { AccountType } from "./accountTypes";
+// // import { AccountType } from "./accountTypes";
 
-declare module "express-serve-static-core" {
-  interface Request {
-    account?: AccountType;
-  }
-}
+// declare module "express-serve-static-core" {
+//   interface Request {
+//     // account?: AccountType;
+//   }
+// }

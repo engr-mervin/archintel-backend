@@ -1,83 +1,94 @@
-# Transaction Aggregation and Querying Service
+# ai-fe-exam
+Archintel Developer Exam
 
-## Overview
+## Specifications
+- Develop a Writer/Editor Dashboard Site that has the ablity to create, edit, and publish an article related to the company. (screenshots are for UI referrence) 
+- Should implement web responsive design
+- Able to demonstrate API integration 
 
-This project provides a service for querying transactions associated with accounts. It uses Alchemy's API to fetch transaction data and stores it in MongoDB. The service is designed to handle querying or aggregation should the need arise.
+## Scoring
+- Implemented functionalities
+- HTML, CSS and Javascript skills
+- Knowledge of API integration
 
-## Models
 
-### Account
+## Database 
+- Company
+    -id
+    -logo (url)
+    -name (text)
+    -Status [Active,Inactive]
+- User 
+    -id
+    -Firstname (text)
+    -Lastname (text)
+    -Type [Writer,Editor]
+    -Status [Active,Inactive]
+- Article
+    -id
+    -Image (url)
+    -Title (text)
+    -Link (url)
+    -Date (Date)
+    -Content (text)
+    -Status [For Edit, Published]
+    -Writer (User FK)
+    -Editor (User FK)
+    -Company (Company FK)
 
-The `Account` model represents a user or entity with a collection of transactions.
+## Forms & Fields
 
-- **Fields:**
-  - `address`: The Ethereum address associated with the account.
-  - `transactions`: An array of references to the `Transaction` model.
-  - `lastTaken`: A timestamp indicating when the transactions were last fetched.
-  - `lastBlockQueriedOutgoing`: The block number of the last block queried for outgoing transactions.
-  - `lastBlockQueriedIncoming`: The block number of the last block queried for incoming transactions.
+- User
+    -firstname - text field (required)
+    -lastname - text field (required)
+    -type - select field (required)
+    -status select field (required)
+    
 
-### Transaction
+- Company:
+    -logo - text field (required)
+    -name - text field (required)
+    -status - select field (required)
 
-The `Transaction` model represents a single transaction related to an account.
+- Article
+    -image - text field (required, must be a valid URL)
+    -title - text field (required)
+    -Link -  text field (required, must be a valid URL)
+    -Date - date picker (required, must default to current date)
+    -Content - text editor or WYSIWYG editor (required) 
 
-- **Fields:**
-  - `accountId`: Reference to the `Account` this transaction belongs to.
-  - `toAddress`: The recipient's address.
-  - `fromAddress`: The sender's address.
-  - `type`: The type of transaction (e.g., ERC20, internal).
-  - `amount`: The amount of tokens involved in the transaction.
-  - `symbol`: The token symbol (e.g., ETH, DAI).
-  - `decimal`: The number of decimals for the token.
-  - `timestamp`: The block timestamp of the transaction.
-  - `txnHash`: The transaction hash.
+## User access & actions
+- Writer
+    -Actions:
+        -Create article (on click submit, must automatically set Article Status Field to "For Edit"), 
+        -Edit an unpublish article (can only edit articles where Status is "For Edit") 
+    -Pages:
+        -Writer's Dashboard
+            -must show 2 list of articles: For Edit (Status is "For Edit") and Published (Status is "Published")
+            -Each item of For Edit Articles list must show a badge or status of the article.
+            -Each item of both lists must display the following fields: Image, Title, Link, Date, Writer Name and Editor Name
+        -All Media
+            -show all articles being created in tabular display and must show the following columns: 
+                actions (includes the edit action), image, title, link, writer, editor, status 
+            -RESTRICT the writer to edit a published article 
+     
+- Editor 
+    -Actions: 
+        -Edit and Publish articles 
+            -In Edit Article Form, there must be 2 buttons "Save" and "Publish", 
+            where if clicked on Save, will update the record 
+            else if clicked on Publish, will update the record and also sets the Status to "Publish"
+        -Ability to manage users (create and updating)
+        -Ability to mange companies (create and updating)
+    -Pages: 
+        -Editor's Dashboard
+            -must show 2 list of articles: For Publish (Status is "For Edit") and Published (Status is "Published")
+            -Each item of both lists must display the following fields: Image, Title, Link, Date, Writer Name and Editor Name
+        -All Media
+            -show all articles being created in tabular display and must show the following columns: 
+            actions (includes the edit action), image, title, link, writer, editor, status 
+            -RESTRICT the writer to edit a published article 
 
-## Data Fetching Strategy
-
-- **Endpoint Usage:**
-
-  - **Querying:** Uses a refresh strategy where transactions are updated based on a configurable interval `TRANSACTION_REFRESH_INTERVAL`. If the interval is set to 0, the service will always fetch the latest values.
-
-- **Fetching Logic:**
-  - If `lastTaken` + refresh interval is less than the current time, fetch data from MongoDB.
-  - Otherwise, fetch the latest values from Alchemy based on the last queried block.
-
-## Configuration
-
-- **Refresh Interval:** Configurable interval for refreshing the transaction data. Set to 0 for always fetching the latest values.
-- **Alchemy Service Limit:** Currently limited to 15 records for presentation purposes. This limit is only on DEV environment.
-
-## Running the Project Locally
-
-1. **Install Dependencies:**
-
-   ```bash
-   npm install
-   ```
-
-2. **Start the Development Server:**
-
-   ```bash
-   npm run dev
-   ```
-
-## Running the Project in Prod
-
-1. **Install Dependencies:**
-
-   ```bash
-   npm install
-   ```
-
-2. **Start the Production Server:**
-
-   ```bash
-   npm run prod
-   ```
-
-## For Improvements
-
-1. **Identify if a transaction is a spam token or a legitimate one**
-2. **Build typescript on prod**
-3. **API validation and tests, validate response schema**
-4. **Add an endpoint to return the different currency/token balances for an account.**
+## Must Have Output
+ 1. Live link - url of your deployed output 
+ 2. Project files - your source code, it could be uploaded in github, bitbucket and must provide a readme file with instructions on how to run your output

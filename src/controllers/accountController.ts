@@ -1,7 +1,7 @@
 import { APIError } from "@/classes/APIError";
 import { TRANSACTION_REFRESH_INTERVAL } from "@/constants/transactionConstants";
-import Account from "@/models/accountModel";
-import Transaction from "@/models/transactionModel";
+import Account from "@/models/userModel";
+import Transaction from "@/models/companyModel";
 import { getNonNFTIncomingTransactions, getNonNFTOutgoingTransactions } from "@/services/alchemyService";
 import { TransactionType } from "@/types/transactionTypes";
 import { catchError } from "@/utils/catchError";

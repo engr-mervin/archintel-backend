@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-export const catchError = function (func: Function) {
+export function catchError(func: Function) {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       await func(req, res, next);
@@ -9,4 +9,4 @@ export const catchError = function (func: Function) {
       next(error);
     }
   };
-};
+}
